@@ -16,7 +16,8 @@ namespace TestProjectServer.Controllers
             _dataManager = new DataManager();
         }
 
-        [HttpGet(Name = "GetData")]
+        [HttpGet]
+        [Route("/GetData")]
         public async Task<IActionResult> GetData()
         {
             try
