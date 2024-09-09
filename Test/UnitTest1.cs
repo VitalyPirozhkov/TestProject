@@ -8,11 +8,12 @@ namespace IntgrationServerTest
     public class DataControllerTests : IClassFixture<WebApplicationFactory<TestProjectServer.Program>>
     {
         private readonly HttpClient _client;
-        private readonly List<string> Messages = new List<string> { "нечет!", "чет!", "равно!" };
+        public List<string> Messages { get; set; }
 
         public DataControllerTests(WebApplicationFactory<TestProjectServer.Program> factory)
         {
             _client = factory.CreateClient();
+            Messages = new List<string> { "нечет!", "чет!", "равно!" };
         }
 
         [Fact]
