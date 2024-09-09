@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
     - name: Setup .NET
@@ -19,13 +19,6 @@ jobs:
       run: dotnet restore TestProjectServer
     - name: Restore dependencies for Client
       run: dotnet restore TestProjectClient
-    - name: Set locale and encoding
-      run: |
-        sudo locale-gen ru_RU.UTF-8
-        sudo update-locale LANG=ru_RU.UTF-8
-        export LANG=ru_RU.UTF-8
-        export LC_ALL=ru_RU.UTF-8
-        export LANGUAGE=ru_RU
     - name: Build Server 
       run: dotnet build TestProjectServer --no-restore
     - name: Build Client
