@@ -19,6 +19,8 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: Set environment variable for UTF-8
+      run: echo "DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false" >> $GITHUB_ENV
     - name: Restore dependencies for Server
       run: dotnet restore TestProjectServer
     - name: Restore dependencies for Client
@@ -29,3 +31,4 @@ jobs:
       run: dotnet build TestProjectClient --no-restore
     - name: Test
       run: dotnet test Test --verbosity normal
+
