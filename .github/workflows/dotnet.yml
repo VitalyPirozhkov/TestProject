@@ -29,6 +29,7 @@ jobs:
     - name: Build Client
       run: dotnet build TestProjectClient --no-restore
     - name: Test
-      run: dotnet test Test --verbosity normal
+        export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+        dotnet test Test --verbosity normal
 
 
