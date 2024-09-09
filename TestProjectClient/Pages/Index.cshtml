@@ -1,0 +1,35 @@
+﻿@page
+@model TestProjectClient.Pages.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<h2>Полученные сообщения от сервера</h2>
+
+<p id="message">Сообщение: <strong>@Model.Message</strong></p>
+
+<button id="refresh-button">Обновить сообщение</button>
+
+@section Scripts {
+    <script>
+        async function fetchMessage() {
+            try {
+                const response = await fetch('/Index?handler=Message');
+
+                if (!response.ok) {
+                    throw new Error('Сетевая ошибка');
+                }
+
+                const message = await response.text();
+
+                document.querySelector('#message strong').innerText = message;
+                } catch (error) {
+                        console.error('Ошибка запроса:', error);
+                        document.getElementById('message').innerHTML = 'Ошибка запроса: ' + error;
+                    }
+                }
+
+                document.getElementById('refresh-button').addEventListener('click', fetchMessage);
+
+                setInterval(fetchMessage, 5000);
+    </script>
+}
+
