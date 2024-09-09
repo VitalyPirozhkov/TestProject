@@ -24,4 +24,4 @@ jobs:
     - name: Build Client
       run: dotnet build TestProjectClient --no-restore
     - name: Test
-      run: cd Test | dotnet test --verbosity normal
+      run: dotnet test Test --verbosity normal
