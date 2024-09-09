@@ -19,6 +19,11 @@ jobs:
       run: dotnet restore TestProjectServer
     - name: Restore dependencies for Client
       run: dotnet restore TestProjectClient
+    - name: Set locale and encoding
+      run: |
+        sudo update-locale LANG=en_US.UTF-8 LANGUAGE=en.UTF-8
+        export LANG=en_US.UTF-8
+        export LC_ALL=en_US.UTF-8
     - name: Build Server 
       run: dotnet build TestProjectServer --no-restore
     - name: Build Client
