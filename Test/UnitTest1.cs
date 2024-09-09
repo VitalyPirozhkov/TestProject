@@ -25,7 +25,7 @@ namespace IntgrationServerTest
 
             var message = await response.Content.ReadAsStringAsync();
 
-            Assert.Contains(Messages.First(m => m.Equals(message, StringComparison.InvariantCulture)), Messages);
+            Assert.Contains(message, Messages);
         }
     }
 }
