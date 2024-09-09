@@ -30,7 +30,7 @@ jobs:
       run: dotnet build TestProjectClient --no-restore
     - name: Test
       run: |
-        export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false
+        export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
         dotnet test Test --verbosity normal
 
 
