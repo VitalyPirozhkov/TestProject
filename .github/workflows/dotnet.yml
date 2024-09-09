@@ -21,9 +21,11 @@ jobs:
       run: dotnet restore TestProjectClient
     - name: Set locale and encoding
       run: |
-        sudo update-locale LANG=ru_RU.UTF-8 LANGUAGE=ru.UTF-8
+        sudo locale-gen ru_RU.UTF-8
+        sudo update-locale LANG=ru_RU.UTF-8
         export LANG=ru_RU.UTF-8
         export LC_ALL=ru_RU.UTF-8
+        export LANGUAGE=ru_RU
     - name: Build Server 
       run: dotnet build TestProjectServer --no-restore
     - name: Build Client
