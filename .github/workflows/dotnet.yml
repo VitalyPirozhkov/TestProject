@@ -10,17 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Set up locale to UTF-8
+    - name: Set up locale to UTF-16
       run: |
-        sudo locale-gen en_US.UTF-8
-        sudo update-locale LANG=en_US.UTF-8
+        sudo locale-gen en_US.UTF-16
+        sudo update-locale LANG=en_US.UTF-16
     - uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Install glibc for globalization
-      run: sudo apt-get install -y libicu-dev
     - name: Restore dependencies for Server
       run: dotnet restore TestProjectServer
     - name: Restore dependencies for Client
