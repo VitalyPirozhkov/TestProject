@@ -15,9 +15,13 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
+    - name: Restore dependencies for Server
+      run: dotnet restore TestProjectServer
+    - name: Restore dependencies for Client
+      run: dotnet restore TestProjectClient
+    - name: Build Server 
+      run: dotnet build TestProjectServer --no-restore
+    - name: Build Client
+      run: dotnet build TestProjectClient --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: cd Test | dotnet test --verbosity normal
