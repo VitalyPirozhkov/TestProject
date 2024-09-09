@@ -8,14 +8,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
-    - name: Set up locale to UTF-8 with Russian support
-      run: |
-        sudo locale-gen en_US.UTF-8
-        sudo locale-gen ru_RU.UTF-8
-        sudo update-locale LANG=ru_RU.UTF-8
-    - uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -24,13 +20,12 @@ jobs:
       run: dotnet restore TestProjectServer
     - name: Restore dependencies for Client
       run: dotnet restore TestProjectClient
-    - name: Build Server 
+    - name: Build Server
       run: dotnet build TestProjectServer --no-restore
     - name: Build Client
       run: dotnet build TestProjectClient --no-restore
     - name: Test
-      run: |
-        export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true
-        dotnet test Test --verbosity normal
+      run: dotnet test Test --verbosity normal
+
 
 
