@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  server:
+    build:
+      context: ./TestProjectServer
+      dockerfile: Dockerfile
+    ports:
+      - "5020:5020"
+      - "5021:5021"
+    restart: always
+    networks:
+      - app-network
+
+  client:
+    build:
+      context: ./TestProjectClient
+      dockerfile: Dockerfile
+    ports:
+      - "5010:5010"
+      - "5011:5011"
+    restart: always
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
