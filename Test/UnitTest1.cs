@@ -51,7 +51,7 @@ namespace IntgrationServerTest
         public async Task GetData_ReturnsValidMessage_WhenCalled()
         {
             var response = await _client.GetAsync("/GetData");
-            var messages = new List<string> {"чет!", "нечет!", "равно!" };
+            var messages = new List<string> { "чет!", "нечет!", "равно!" };
             var content = await response.Content.ReadAsStringAsync();
             Assert.Contains(content, messages);
         }
