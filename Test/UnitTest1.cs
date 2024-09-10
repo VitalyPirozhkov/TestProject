@@ -1,4 +1,6 @@
+using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
@@ -44,5 +46,16 @@ namespace IntgrationServerTest
             var response = await _client.GetAsync("/InvalidEndpoint");
             Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
         }
+
+        [Fact]
+        public async Task GetData_ReturnsValidMessage_WhenCalled()
+        {
+            var response = await _client.GetAsync("/GetData");
+            var messages = new List<string> {"чет!", "нечет!", "равно!" };
+            var content = await response.Content.ReadAsStringAsync();
+            Assert.Contains(content, messages);
+        }
+
+
     }
 }
